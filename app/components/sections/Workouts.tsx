@@ -27,7 +27,7 @@ export default function Workouts() {
                     </div>
 
                     {/* Right Side - Image & Overlay Card */}
-                    <div className="relative">
+                    <div className="relative mt-12">
                         {/* Background Text "Gamification" */}
                         <div className="absolute -top-10 right-0 text-6xl md:text-8xl font-bold text-foreground/5 select-none z-0">
                             Gamification

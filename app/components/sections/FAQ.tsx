@@ -45,12 +45,12 @@ export default function FAQ() {
                             <br />
                             Asked Questions
                         </h2>
-                        <p className="text-muted-foreground text-lg mb-8">
+                        <p className="text-muted-foreground text-lg mb-0">
                             Find answers to common questions about our gym and services.
                         </p>
-                        <button className="px-8 py-3 bg-card text-foreground font-semibold rounded-lg hover:bg-[#2a2a2a] transition-all border border-border">
+                        {/* <button className="px-8 py-3 bg-card text-foreground font-semibold rounded-lg hover:bg-[#2a2a2a] transition-all border border-border">
                             View All FAQ
-                        </button>
+                        </button> */}
                     </div>
 
                     {/* Right - Accordion */}

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Instagram, Twitter, Linkedin, ArrowUpRight } from "lucide-react";
 
 export default function Team() {
@@ -71,9 +72,12 @@ export default function Team() {
                 </div>
 
                 <div className="mt-12 text-center">
-                    <button className="px-8 py-3 border border-border text-foreground font-semibold rounded-lg hover:bg-white/5 transition-all">
+                    <Link
+                        href="/trainers/coaches"
+                        className="px-8 py-3 border border-border text-foreground font-semibold rounded-lg hover:bg-white/5 transition-all inline-block"
+                    >
                         See All Team
-                    </button>
+                    </Link>
                 </div>
             </div>
         </section>

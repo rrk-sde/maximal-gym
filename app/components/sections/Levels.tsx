@@ -7,7 +7,10 @@ export default function Levels() {
                 {/* Left Side - Cards with Background Text */}
                 <div className="relative">
                     {/* Large Background Text */}
-                    <div className="absolute top-0 left-0 text-5xl md:text-8xl font-bold text-foreground/5 select-none">
+                    {/* <div className="absolute top-0 left-0 text-5xl md:text-8xl font-bold text-foreground/5 select-none">
+                        Personalized
+                    </div> */}
+                    <div className="absolute  left-0 top-4 text-6xl md:text-8xl font-bold text-foreground/5 select-none z-0">
                         Personalized
                     </div>
 
@@ -16,7 +19,7 @@ export default function Levels() {
                         {/* Workout Area Card */}
                         <div className="bg-card border border-border rounded-xl p-5 flex items-center gap-4 hover:shadow-lg transition-shadow duration-300">
                             <div className="w-14 h-14 bg-primary rounded-lg flex items-center justify-center flex-shrink-0">
-                                <User className="w-7 h-7 text-black" strokeWidth={2.5} />
+                                <User className="w-7 h-7 text-black dark:text-white" strokeWidth={2.5} />
                             </div>
                             <div>
                                 <div className="text-foreground font-semibold text-base">Workout Area</div>
@@ -27,7 +30,7 @@ export default function Levels() {
                         {/* Intensity Card */}
                         <div className="bg-card border border-border rounded-xl p-5 flex items-center gap-4 hover:shadow-lg transition-shadow duration-300">
                             <div className="w-14 h-14 bg-primary rounded-lg flex items-center justify-center flex-shrink-0">
-                                <Clock className="w-7 h-7 text-black" strokeWidth={2.5} />
+                                <Clock className="w-7 h-7 text-black dark:text-white" strokeWidth={2.5} />
                             </div>
                             <div>
                                 <div className="text-foreground font-semibold text-base">Intensity</div>
@@ -38,7 +41,7 @@ export default function Levels() {
                         {/* Schedules Card */}
                         <div className="bg-card border border-border rounded-xl p-5 flex items-center gap-4 hover:shadow-lg transition-shadow duration-300">
                             <div className="w-14 h-14 bg-primary rounded-lg flex items-center justify-center flex-shrink-0">
-                                <CalendarDays className="w-7 h-7 text-black" strokeWidth={2.5} />
+                                <CalendarDays className="w-7 h-7 text-black dark:text-white" strokeWidth={2.5} />
                             </div>
                             <div>
                                 <div className="text-foreground font-semibold text-base">Schedules</div>
