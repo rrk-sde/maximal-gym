@@ -1,24 +1,21 @@
+"use client";
 import Link from "next/link";
-import { Instagram, Twitter, Linkedin, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
+import { useGetAllCoachesQuery, Coach } from "../../store/api/coachApi";
 
 export default function Team() {
-    const trainers = [
-        {
-            name: "Vikram Malhotra",
-            role: "Strength & Conditioning",
-            image: "https://images.unsplash.com/photo-1567013127542-490d757e51fc?w=400&q=80",
-        },
-        {
-            name: "Anjali Gupta",
-            role: "Yoga & Mindfulness",
-            image: "https://images.unsplash.com/photo-1594381898411-846e7d193883?w=400&q=80",
-        },
-        {
-            name: "Rohan Verma",
-            role: "CrossFit & Endurance",
-            image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&q=80",
-        },
-    ];
+    const { data, isLoading } = useGetAllCoachesQuery({ isActive: true });
+    const coaches = data?.data?.coaches?.slice(0, 3) || []; // Get first 3 coaches
+
+    if (isLoading) {
+        return (
+            <section className="py-20 bg-background">
+                <div className="container mx-auto px-6 lg:px-12 text-center">
+                    <p className="text-muted-foreground">Loading trainers...</p>
+                </div>
+            </section>
+        );
+    }
 
     return (
         <section className="py-20 bg-background">
@@ -35,15 +32,15 @@ export default function Team() {
                 </div>
 
                 <div className="grid md:grid-cols-3 gap-8">
-                    {trainers.map((trainer, index) => (
+                    {coaches.map((coach: Coach) => (
                         <div
-                            key={index}
+                            key={coach._id}
                             className="group relative h-[400px] rounded-2xl overflow-hidden cursor-pointer"
                         >
                             {/* Image */}
                             <img
-                                src={trainer.image}
-                                alt={trainer.name}
+                                src={coach.image || 'https://images.unsplash.com/photo-1567013127542-490d757e51fc?w=400&q=80'}
+                                alt={coach.name}
                                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                             />
 
@@ -55,10 +52,10 @@ export default function Team() {
                                 <div className="flex items-end justify-between">
                                     <div>
                                         <h3 className="text-xl font-bold text-white mb-1">
-                                            {trainer.name}
+                                            {coach.name}
                                         </h3>
                                         <p className="text-gray-300 text-sm">
-                                            {trainer.role}
+                                            {coach.specialty}
                                         </p>
                                     </div>
 

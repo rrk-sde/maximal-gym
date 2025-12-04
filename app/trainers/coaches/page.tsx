@@ -1,27 +1,19 @@
+"use client";
 import Link from "next/link";
-import { Award, Users, Star } from "lucide-react";
+import { Award, Star } from "lucide-react";
+import { useGetAllCoachesQuery, Coach } from "../../store/api/coachApi";
 
 export default function OurCoachesPage() {
-    const coaches = [
-        {
-            name: "Coach Vikram",
-            specialty: "Strength & Conditioning",
-            experience: "8+ years",
-            certifications: "NASM-CPT, CSCS"
-        },
-        {
-            name: "Coach Priya",
-            specialty: "Yoga & Flexibility",
-            experience: "10+ years",
-            certifications: "RYT-500, Yoga Alliance"
-        },
-        {
-            name: "Coach Arjun",
-            specialty: "HIIT & Cardio",
-            experience: "6+ years",
-            certifications: "ACE-CPT, TRX"
-        }
-    ];
+    const { data, isLoading } = useGetAllCoachesQuery({});
+    const coaches = data?.data?.coaches || [];
+
+    if (isLoading) {
+        return (
+            <main className="min-h-screen bg-black text-white pt-28 pb-20 flex items-center justify-center">
+                <p className="text-gray-400">Loading Coaches...</p>
+            </main>
+        );
+    }
 
     return (
         <main className="min-h-screen bg-black text-white pt-28 pb-20">
@@ -40,8 +32,8 @@ export default function OurCoachesPage() {
 
                 {/* Coaches Grid */}
                 <div className="grid md:grid-cols-3 gap-8 mb-16">
-                    {coaches.map((coach, index) => (
-                        <div key={index} className="bg-white/5 border border-white/10 rounded-xl p-6">
+                    {coaches.map((coach: Coach) => (
+                        <div key={coach._id} className="bg-white/5 border border-white/10 rounded-xl p-6">
                             <div className="w-20 h-20 bg-[#FF4D00] rounded-full flex items-center justify-center mx-auto mb-4">
                                 <span className="text-white text-2xl font-bold">
                                     {coach.name.split(' ')[1][0]}

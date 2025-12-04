@@ -2,6 +2,9 @@
 	"folders": [
 		{
 			"path": "../../.."
+		},
+		{
+			"path": "../../../../maximal-gym-backend"
 		}
 	],
 	"settings": {}

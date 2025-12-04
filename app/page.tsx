@@ -5,6 +5,7 @@ import Levels from "./components/sections/Levels";
 import Workouts from "./components/sections/Workouts";
 import Team from "./components/sections/Team";
 import Testimonials from "./components/sections/Testimonials";
+import Contact from "./components/sections/Contact";
 import FAQ from "./components/sections/FAQ";
 
 export default function HomePage() {
@@ -17,6 +18,7 @@ export default function HomePage() {
             <Workouts />
             <Team />
             <Testimonials />
+            <Contact />
             <FAQ />
         </main>
     );

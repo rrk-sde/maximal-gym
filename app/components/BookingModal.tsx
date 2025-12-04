@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { X, Calendar, Clock, User } from "lucide-react";
 import { toast } from "sonner";
+import { useCreateBookingMutation } from "../store/api/bookingApi";
 
 interface BookingModalProps {
     isOpen: boolean;
@@ -19,29 +20,33 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
         date: "",
         time: "",
     });
-    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [createBooking, { isLoading }] = useCreateBookingMutation();
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        setIsSubmitting(true);
 
-        await new Promise((resolve) => setTimeout(resolve, 1000));
+        try {
+            await createBooking(formData).unwrap();
 
-        toast.success("Session Booked! 🎯", {
-            description: "Your session has been confirmed. Check your email for details.",
-        });
+            toast.success("Session Booked! 🎯", {
+                description: "Your session has been confirmed. Check your email for details.",
+            });
 
-        setIsSubmitting(false);
-        onClose();
-        setFormData({
-            name: "",
-            email: "",
-            phone: "",
-            coach: "",
-            sessionType: "",
-            date: "",
-            time: "",
-        });
+            onClose();
+            setFormData({
+                name: "",
+                email: "",
+                phone: "",
+                coach: "",
+                sessionType: "",
+                date: "",
+                time: "",
+            });
+        } catch (error: any) {
+            toast.error("Booking Failed", {
+                description: error.data?.message || "Something went wrong. Please try again.",
+            });
+        }
     };
 
     if (!isOpen) return null;
@@ -192,10 +197,10 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
 
                     <button
                         type="submit"
-                        disabled={isSubmitting}
+                        disabled={isLoading}
                         className="w-full bg-[#FF4D00] text-white font-bold py-4 rounded-lg hover:bg-[#FF4D00]/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                        {isSubmitting ? "Booking..." : "Confirm Booking"}
+                        {isLoading ? "Booking..." : "Confirm Booking"}
                     </button>
                 </form>
             </div>

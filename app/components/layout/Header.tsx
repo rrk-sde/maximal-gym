@@ -70,6 +70,14 @@ export default function Header() {
                             )}
                         </div>
 
+                        <Link href="/services" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+                            Services
+                        </Link>
+
+                        <Link href="/gallery" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+                            Gallery
+                        </Link>
+
                         <Link href="/#testimonials" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
                             Testimonials
                         </Link>
@@ -108,6 +116,8 @@ export default function Header() {
                     <nav className="container mx-auto px-6 py-6 flex flex-col gap-4">
                         <a href="#programs" className="text-sm font-medium text-muted-foreground hover:text-foreground py-2">Programs</a>
                         <a href="#trainers" className="text-sm font-medium text-muted-foreground hover:text-foreground py-2">Trainers</a>
+                        <Link href="/services" className="text-sm font-medium text-muted-foreground hover:text-foreground py-2">Services</Link>
+                        <Link href="/gallery" className="text-sm font-medium text-muted-foreground hover:text-foreground py-2">Gallery</Link>
                         <a href="#testimonials" className="text-sm font-medium text-muted-foreground hover:text-foreground py-2">Testimonials</a>
                         <a href="#articles" className="text-sm font-medium text-muted-foreground hover:text-foreground py-2">Articles</a>
                         <Link

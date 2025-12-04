@@ -3,36 +3,22 @@
 import { useState } from "react";
 import { Plus, Minus } from "lucide-react";
 
+import { useGetAllFAQsQuery, FAQ as FAQType } from "../../store/api/faqApi";
+
 export default function FAQ() {
     const [openIndex, setOpenIndex] = useState<number | null>(0);
+    const { data, isLoading } = useGetAllFAQsQuery({});
+    const faqs = data?.data?.faqs || [];
 
-    const faqs = [
-        {
-            question: "What types of workouts does Maximal offer?",
-            answer:
-                "We offer a wide range of workouts including Strength Training, HIIT, Yoga, Pilates, and personalized coaching sessions tailored to your goals.",
-        },
-        {
-            question: "How do I get started with Maximal?",
-            answer:
-                "Simply sign up for an account, choose your fitness level, and we'll generate a personalized plan for you. You can also book a session with a trainer.",
-        },
-        {
-            question: "Can I track my progress?",
-            answer:
-                "Yes! Our app includes comprehensive tracking features for workouts, nutrition, and body measurements to help you visualize your journey.",
-        },
-        {
-            question: "Do I need equipment to participate?",
-            answer:
-                "We have plans for both gym-based workouts and home workouts with no equipment, so you can train wherever you are.",
-        },
-        {
-            question: "Is there a community for support?",
-            answer:
-                "Absolutely! Join our community forums and challenges to connect with other members and stay motivated.",
-        },
-    ];
+    if (isLoading) {
+        return (
+            <section className="py-20 bg-background">
+                <div className="container mx-auto px-6 lg:px-12 text-center">
+                    <p className="text-muted-foreground">Loading FAQs...</p>
+                </div>
+            </section>
+        );
+    }
 
     return (
         <section className="py-20 bg-background">
@@ -55,7 +41,7 @@ export default function FAQ() {
 
                     {/* Right - Accordion */}
                     <div className="space-y-4">
-                        {faqs.map((faq, index) => (
+                        {faqs.map((faq: FAQType, index: number) => (
                             <div
                                 key={index}
                                 className={`border-b border-border transition-colors ${openIndex === index ? "bg-white/5 rounded-lg border-none" : ""
