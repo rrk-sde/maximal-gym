@@ -7,6 +7,7 @@ const store = () => {
     return configureStore({
         reducer: {
             // Add reducers here as we build features
+            _dummy: (state = {}) => state,
         },
     });
 };

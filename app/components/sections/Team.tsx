@@ -20,15 +20,15 @@ export default function Team() {
     ];
 
     return (
-        <section className="py-20 bg-black">
+        <section className="py-20 bg-background">
             <div className="container mx-auto px-6 lg:px-12">
                 <div className="text-center mb-16">
-                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+                    <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
                         Meet the Team
                         <br />
-                        <span className="text-gray-400">Behind Maximal</span>
+                        <span className="text-muted-foreground">Behind Maximal</span>
                     </h2>
-                    <p className="text-gray-400 text-lg mt-4">
+                    <p className="text-muted-foreground text-lg mt-4">
                         Maximal works with proven experts to help you reach your goals
                     </p>
                 </div>
@@ -56,13 +56,13 @@ export default function Team() {
                                         <h3 className="text-xl font-bold text-white mb-1">
                                             {trainer.name}
                                         </h3>
-                                        <p className="text-gray-400 text-sm">
+                                        <p className="text-gray-300 text-sm">
                                             {trainer.role}
                                         </p>
                                     </div>
 
                                     <div className="w-10 h-10 bg-[#FF4D00] rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                        <ArrowUpRight className="w-6 h-6 text-white" />
+                                        <ArrowUpRight className="w-6 h-6 text-black" />
                                     </div>
                                 </div>
                             </div>
@@ -71,7 +71,7 @@ export default function Team() {
                 </div>
 
                 <div className="mt-12 text-center">
-                    <button className="px-8 py-3 border border-white/20 text-white font-semibold rounded-lg hover:bg-white/5 transition-all">
+                    <button className="px-8 py-3 border border-border text-foreground font-semibold rounded-lg hover:bg-white/5 transition-all">
                         See All Team
                     </button>
                 </div>

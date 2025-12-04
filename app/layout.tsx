@@ -3,6 +3,9 @@ import { Oswald, Outfit } from "next/font/google";
 import "./globals.css";
 import StoreProvider from "./store/storeProvider";
 import { Toaster } from "sonner";
+import Header from "./components/layout/Header";
+import Footer from "./components/sections/Footer";
+import { ThemeProvider } from "./components/ThemeProvider";
 
 const oswald = Oswald({
     subsets: ["latin"],
@@ -29,12 +32,16 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en" className={`${oswald.variable} ${outfit.variable}`}>
+        <html lang="en" className={`${oswald.variable} ${outfit.variable}`} suppressHydrationWarning>
             <body className={outfit.className}>
-                <StoreProvider>
-                    {children}
-                    <Toaster position="top-center" />
-                </StoreProvider>
+                <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+                    <StoreProvider>
+                        <Header />
+                        {children}
+                        <Footer />
+                        <Toaster position="top-center" />
+                    </StoreProvider>
+                </ThemeProvider>
             </body>
         </html>
     );

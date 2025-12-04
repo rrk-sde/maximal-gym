@@ -29,22 +29,36 @@ export default function Stats() {
     ];
 
     return (
-        <section className="py-20 border-t border-white/10">
+        <section className="py-20 border-t border-border bg-background">
             <div className="container mx-auto px-4 lg:px-8">
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                     {stats.map((stat, index) => (
                         <div
                             key={index}
-                            className="glass-effect p-6 rounded-xl hover-lift"
+                            className="group relative bg-card border border-border p-8 rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-primary/20 hover:border-primary/50"
                         >
-                            <div className="text-[rgb(var(--primary))] mb-4">{stat.icon}</div>
-                            <div className="text-4xl font-bold text-white mb-2">
+                            {/* Icon with background */}
+                            <div className="inline-flex items-center justify-center w-16 h-16 rounded-xl bg-primary/10 text-primary mb-6 group-hover:bg-primary/20 transition-colors duration-300">
+                                {stat.icon}
+                            </div>
+
+                            {/* Value */}
+                            <div className="text-5xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
                                 {stat.value}
                             </div>
-                            <div className="text-lg font-semibold text-white mb-1">
+
+                            {/* Label */}
+                            <div className="text-xl font-semibold text-foreground mb-2">
                                 {stat.label}
                             </div>
-                            <div className="text-sm text-gray-400">{stat.description}</div>
+
+                            {/* Description */}
+                            <div className="text-sm text-muted-foreground leading-relaxed">
+                                {stat.description}
+                            </div>
+
+                            {/* Hover accent line */}
+                            <div className="absolute bottom-0 left-0 right-0 h-1 bg-primary rounded-b-2xl transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
                         </div>
                     ))}
                 </div>

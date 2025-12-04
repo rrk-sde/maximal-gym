@@ -36,22 +36,22 @@ export default function Testimonials() {
     }, []);
 
     return (
-        <section id="testimonials" className="py-20 bg-[#050505]">
+        <section id="testimonials" className="py-20 bg-background">
             <div className="container mx-auto px-6 lg:px-12">
-                <div className="max-w-4xl mx-auto bg-[#0a0a0a] border border-white/10 rounded-3xl p-8 md:p-12 relative transition-all duration-500">
+                <div className="max-w-4xl mx-auto bg-card border border-border rounded-3xl p-8 md:p-12 relative transition-all duration-500 shadow-lg">
                     {/* Quote Icon */}
-                    <div className="absolute -top-6 left-8 md:left-12 w-12 h-12 bg-[#FF4D00] rounded-full flex items-center justify-center">
+                    <div className="absolute -top-6 left-8 md:left-12 w-12 h-12 bg-primary rounded-full flex items-center justify-center shadow-lg shadow-primary/30">
                         <Quote className="w-6 h-6 text-white fill-white" />
                     </div>
 
                     <div className="mt-6">
                         <div className="min-h-[180px] flex flex-col justify-between">
-                            <h3 className="text-2xl md:text-3xl font-medium text-white leading-relaxed mb-8 animate-fade-in">
+                            <h3 className="text-2xl md:text-3xl font-medium text-foreground leading-relaxed mb-8 animate-fade-in">
                                 &ldquo;{testimonials[activeIndex].quote}&rdquo;
                             </h3>
 
                             <div className="flex items-center gap-4 animate-fade-in">
-                                <div className="w-12 h-12 bg-gray-700 rounded-lg overflow-hidden">
+                                <div className="w-12 h-12 bg-secondary rounded-lg overflow-hidden">
                                     <img
                                         src={testimonials[activeIndex].image}
                                         alt={testimonials[activeIndex].name}
@@ -59,8 +59,8 @@ export default function Testimonials() {
                                     />
                                 </div>
                                 <div>
-                                    <div className="text-white font-bold">{testimonials[activeIndex].name}</div>
-                                    <div className="text-gray-500 text-sm">{testimonials[activeIndex].role}</div>
+                                    <div className="text-foreground font-bold">{testimonials[activeIndex].name}</div>
+                                    <div className="text-muted-foreground text-sm">{testimonials[activeIndex].role}</div>
                                 </div>
                             </div>
                         </div>
@@ -73,7 +73,7 @@ export default function Testimonials() {
                         <button
                             key={index}
                             onClick={() => setActiveIndex(index)}
-                            className={`h-1 rounded-full transition-all duration-300 ${index === activeIndex ? "w-8 bg-[#FF4D00]" : "w-2 bg-gray-700 hover:bg-gray-600"
+                            className={`h-1 rounded-full transition-all duration-300 ${index === activeIndex ? "w-8 bg-primary" : "w-2 bg-secondary hover:bg-primary/50"
                                 }`}
                             aria-label={`Go to testimonial ${index + 1}`}
                         />

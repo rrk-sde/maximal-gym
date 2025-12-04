@@ -8,12 +8,12 @@
 @theme inline {
   --font-sans: "Inter", system-ui, -apple-system, sans-serif;
   --font-inter: "Inter", system-ui, -apple-system, sans-serif;
-  
+
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-  
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -30,23 +30,56 @@
 
 :root {
   --radius: 0.5rem;
-  
+
   /* Gym Theme - Dark with Orange Accent */
   --background: 10 10 10;
   --foreground: 255 255 255;
   --card: 20 20 20;
   --card-foreground: 255 255 255;
-  
-  --primary: 255 77 0; /* Orange */
+
+  --primary: 255 77 0;
+  /* Orange */
   --primary-foreground: 255 255 255;
-  
+
   --secondary: 40 40 40;
   --secondary-foreground: 255 255 255;
-  
+
   --accent: 255 77 0;
   --accent-foreground: 255 255 255;
-  
-  --border: 40 40 40;
+
+  --border: 255 255 255;
+  /* White for dark mode */
+  --border-opacity: 0.1;
+  /* 10% opacity - subtle borders (#ffffff1a) */
+  /* --ring: 255 77 0; */
+}
+
+.light {
+  /* Light Mode Colors */
+  --background: 255 255 255;
+  /* Pure white */
+  --foreground: 0 0 0;
+  /* Pure black */
+  --card: 248 248 248;
+  /* Light gray for cards - visible against white background */
+  --card-foreground: 0 0 0;
+  /* Pure black for card text */
+
+  --primary: 255 77 0;
+  /* Keep orange accent */
+  --primary-foreground: 255 255 255;
+
+  --secondary: 240 240 240;
+  --secondary-foreground: 0 0 0;
+  /* Pure black */
+
+  --accent: 255 77 0;
+  --accent-foreground: 255 255 255;
+
+  --border: 220 220 220;
+  /* Gray for light mode */
+  --border-opacity: 1;
+  /* Full opacity */
   --ring: 255 77 0;
 }
 
@@ -60,12 +93,39 @@
   }
 }
 
+@layer utilities {
+  .text-muted {
+    color: rgb(var(--foreground) / 0.6);
+  }
+
+  .text-muted-foreground {
+    color: rgb(var(--foreground) / 0.6);
+  }
+
+  .bg-card {
+    background-color: rgb(var(--card));
+  }
+
+  .text-card-foreground {
+    color: rgb(var(--card-foreground));
+  }
+
+  .border-muted {
+    border-color: rgb(var(--border) / var(--border-opacity));
+  }
+
+  .border-border {
+    border-color: rgb(var(--border) / var(--border-opacity));
+  }
+}
+
 /* Custom Animations */
 @keyframes fade-in {
   from {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -77,6 +137,7 @@
     opacity: 0;
     transform: translateX(-20px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -88,6 +149,7 @@
     opacity: 0;
     transform: scale(0.95);
   }
+
   to {
     opacity: 1;
     transform: scale(1);

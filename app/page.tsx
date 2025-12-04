@@ -6,13 +6,10 @@ import Workouts from "./components/sections/Workouts";
 import Team from "./components/sections/Team";
 import Testimonials from "./components/sections/Testimonials";
 import FAQ from "./components/sections/FAQ";
-import Footer from "./components/sections/Footer";
-import Header from "./components/layout/Header";
 
 export default function HomePage() {
     return (
-        <main className="min-h-screen bg-[rgb(var(--background))]">
-            <Header />
+        <main className="min-h-screen">
             <Hero />
             <Stats />
             <Goals />
@@ -21,7 +18,6 @@ export default function HomePage() {
             <Team />
             <Testimonials />
             <FAQ />
-            <Footer />
         </main>
     );
 }
