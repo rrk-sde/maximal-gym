@@ -100,7 +100,7 @@ export default function BookingsPage() {
                                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Session Type</th>
                                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Date & Time</th>
                                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+                                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Actions</th>
                             </tr>
                         </thead>
                         <tbody className="bg-white divide-y divide-gray-200">
@@ -130,8 +130,8 @@ export default function BookingsPage() {
                                             {booking.status}
                                         </span>
                                     </td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                        <div className="flex gap-2">
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-right">
+                                        <div className="flex gap-2 justify-end">
                                             {booking.status === "pending" && (
                                                 <>
                                                     <button
