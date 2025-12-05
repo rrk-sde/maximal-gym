@@ -10,7 +10,15 @@ export default function ContactsPage() {
     const [priorityFilter, setPriorityFilter] = useState("");
     const [page, setPage] = useState(1);
     const [editingId, setEditingId] = useState<string | null>(null);
-    const [editData, setEditData] = useState({ status: "", priority: "", notes: "" });
+    const [editData, setEditData] = useState<{
+        status: "pending" | "in-progress" | "resolved" | "closed";
+        priority: "low" | "medium" | "high";
+        notes: string;
+    }>({
+        status: "pending",
+        priority: "medium",
+        notes: ""
+    });
 
     const { data, isLoading, refetch } = useGetAllContactsQuery({
         status: statusFilter || undefined,
@@ -144,7 +152,7 @@ export default function ContactsPage() {
                                         {editingId === contact._id ? (
                                             <select
                                                 value={editData.status}
-                                                onChange={(e) => setEditData({ ...editData, status: e.target.value })}
+                                                onChange={(e) => setEditData({ ...editData, status: e.target.value as "pending" | "in-progress" | "resolved" | "closed" })}
                                                 className="text-xs border rounded px-2 py-1"
                                             >
                                                 <option value="pending">Pending</option>
@@ -162,7 +170,7 @@ export default function ContactsPage() {
                                         {editingId === contact._id ? (
                                             <select
                                                 value={editData.priority}
-                                                onChange={(e) => setEditData({ ...editData, priority: e.target.value })}
+                                                onChange={(e) => setEditData({ ...editData, priority: e.target.value as "low" | "medium" | "high" })}
                                                 className="text-xs border rounded px-2 py-1"
                                             >
                                                 <option value="low">Low</option>
@@ -201,8 +209,8 @@ export default function ContactsPage() {
                                                         onClick={() => {
                                                             setEditingId(contact._id);
                                                             setEditData({
-                                                                status: contact.status,
-                                                                priority: contact.priority,
+                                                                status: contact.status as "pending" | "in-progress" | "resolved" | "closed",
+                                                                priority: contact.priority as "low" | "medium" | "high",
                                                                 notes: contact.notes || "",
                                                             });
                                                         }}
