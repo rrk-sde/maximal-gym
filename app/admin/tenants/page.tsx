@@ -254,7 +254,7 @@ export default function TenantsPage() {
                                         required
                                         value={formData.name}
                                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                                        className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        className="w-full px-4 py-2 border rounded-md text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
                                         placeholder="Maximal Gym"
                                     />
                                 </div>
@@ -268,7 +268,7 @@ export default function TenantsPage() {
                                         required
                                         value={formData.slug}
                                         onChange={(e) => setFormData({ ...formData, slug: e.target.value.toLowerCase().replace(/\s+/g, '-') })}
-                                        className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        className="w-full px-4 py-2 border rounded-md text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
                                         placeholder="maximal-gym"
                                     />
                                 </div>
@@ -282,7 +282,7 @@ export default function TenantsPage() {
                                         required
                                         value={formData.email}
                                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                        className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        className="w-full px-4 py-2 border rounded-md text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
                                         placeholder="admin@gym.com"
                                     />
                                 </div>
@@ -296,7 +296,7 @@ export default function TenantsPage() {
                                         required
                                         value={formData.phone}
                                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                                        className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        className="w-full px-4 py-2 border rounded-md text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
                                         placeholder="+91 9876543210"
                                     />
                                 </div>
@@ -312,7 +312,7 @@ export default function TenantsPage() {
                                             ...formData,
                                             address: { ...formData.address, city: e.target.value }
                                         })}
-                                        className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        className="w-full px-4 py-2 border rounded-md text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
                                         placeholder="Mumbai"
                                     />
                                 </div>
@@ -328,7 +328,7 @@ export default function TenantsPage() {
                                             ...formData,
                                             address: { ...formData.address, state: e.target.value }
                                         })}
-                                        className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        className="w-full px-4 py-2 border rounded-md text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
                                         placeholder="Maharashtra"
                                     />
                                 </div>
@@ -343,7 +343,7 @@ export default function TenantsPage() {
                                             ...formData,
                                             subscription: { ...formData.subscription, plan: e.target.value as any }
                                         })}
-                                        className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        className="w-full px-4 py-2 border rounded-md text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
                                     >
                                         <option value="free">Free</option>
                                         <option value="basic">Basic</option>
@@ -362,7 +362,7 @@ export default function TenantsPage() {
                                             ...formData,
                                             subscription: { ...formData.subscription, status: e.target.value as any }
                                         })}
-                                        className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        className="w-full px-4 py-2 border rounded-md text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
                                     >
                                         <option value="active">Active</option>
                                         <option value="inactive">Inactive</option>
