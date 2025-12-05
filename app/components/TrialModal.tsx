@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { X, Calendar, Clock } from "lucide-react";
 import { toast } from "sonner";
+import { useCreateContactMutation } from "../store/api/contactApi";
 
 interface TrialModalProps {
     isOpen: boolean;
@@ -18,40 +19,66 @@ export default function TrialModal({ isOpen, onClose }: TrialModalProps) {
         fitnessGoal: "",
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [createContact] = useCreateContactMutation();
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsSubmitting(true);
 
-        // Simulate API call
-        await new Promise((resolve) => setTimeout(resolve, 1000));
+        try {
+            // Map trial form data to contact API format
+            const timeSlots: Record<string, string> = {
+                morning: "Morning (6:00 AM - 10:00 AM)",
+                afternoon: "Afternoon (10:00 AM - 4:00 PM)",
+                evening: "Evening (4:00 PM - 9:00 PM)",
+                flexible: "Flexible"
+            };
 
-        toast.success("Trial Booked Successfully! 🎉", {
-            description: "We'll send you a confirmation email shortly. Get ready to transform your life!",
-        });
+            const message = `Free Trial Request
 
-        setIsSubmitting(false);
-        onClose();
+Preferred Time Slot: ${timeSlots[formData.preferredTime]}
+${formData.fitnessGoal ? `\nFitness Goal: ${formData.fitnessGoal}` : ''}`;
 
-        // Reset form
-        setFormData({
-            name: "",
-            email: "",
-            phone: "",
-            preferredTime: "morning",
-            fitnessGoal: "",
-        });
+            await createContact({
+                name: formData.name,
+                email: formData.email,
+                phone: formData.phone,
+                subject: "Free Trial Request",
+                message: message.trim()
+            }).unwrap();
+
+            toast.success("Trial Booked Successfully! 🎉", {
+                description: "We'll send you a confirmation email shortly. Get ready to transform your life!",
+            });
+
+            onClose();
+
+            // Reset form
+            setFormData({
+                name: "",
+                email: "",
+                phone: "",
+                preferredTime: "morning",
+                fitnessGoal: "",
+            });
+        } catch (error: any) {
+            toast.error("Failed to book trial", {
+                description: error?.data?.message || "Something went wrong. Please try again.",
+            });
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     if (!isOpen) return null;
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+        <div className="fixed inset-0 z-[10000] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
             <div className="bg-card border border-border rounded-2xl w-full max-w-md p-6 relative max-h-[90vh] overflow-y-auto">
                 {/* Close Button */}
                 <button
                     onClick={onClose}
-                    className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors"
+                    className="absolute top-4 right-4 text-muted-foreground hover:text-foreground transition-colors"
                 >
                     <X className="w-6 h-6" />
                 </button>
@@ -60,16 +87,16 @@ export default function TrialModal({ isOpen, onClose }: TrialModalProps) {
                 <div className="mb-6">
                     <div className="flex items-center gap-2 mb-2">
                         <span className="text-2xl">💪</span>
-                        <h2 className="text-2xl font-bold text-white">Start Your Free Trial</h2>
+                        <h2 className="text-2xl font-bold text-foreground">Start Your Free Trial</h2>
                     </div>
-                    <p className="text-gray-400 text-sm">
+                    <p className="text-muted-foreground text-sm">
                         Experience our premium gym facilities and expert trainers for 7 days, absolutely free!
                     </p>
                 </div>
 
                 {/* Trial Benefits */}
-                <div className="bg-white/5 border border-border rounded-lg p-4 mb-6">
-                    <h3 className="text-white font-semibold mb-3 flex items-center gap-2">
+                <div className="bg-card border border-border rounded-lg p-4 mb-6">
+                    <h3 className="text-foreground font-semibold mb-3 flex items-center gap-2">
                         <Calendar className="w-4 h-4 text-[#FF4D00]" />
                         What's Included:
                     </h3>
@@ -96,7 +123,7 @@ export default function TrialModal({ isOpen, onClose }: TrialModalProps) {
                 {/* Form */}
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
-                        <label htmlFor="trial-name" className="block text-white text-sm font-medium mb-2">
+                        <label htmlFor="trial-name" className="block text-foreground text-sm font-medium mb-2">
                             Full Name *
                         </label>
                         <input
@@ -105,13 +132,13 @@ export default function TrialModal({ isOpen, onClose }: TrialModalProps) {
                             required
                             value={formData.name}
                             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                            className="w-full bg-white/5 border border-border rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#FF4D00] transition-colors"
+                            className="w-full bg-card border border-border rounded-lg px-4 py-3 text-foreground placeholder-muted-foreground focus:outline-none focus:border-[#FF4D00] transition-colors"
                             placeholder="Enter your full name"
                         />
                     </div>
 
                     <div>
-                        <label htmlFor="trial-email" className="block text-white text-sm font-medium mb-2">
+                        <label htmlFor="trial-email" className="block text-foreground text-sm font-medium mb-2">
                             Email Address *
                         </label>
                         <input
@@ -120,13 +147,13 @@ export default function TrialModal({ isOpen, onClose }: TrialModalProps) {
                             required
                             value={formData.email}
                             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                            className="w-full bg-white/5 border border-border rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#FF4D00] transition-colors"
+                            className="w-full bg-card border border-border rounded-lg px-4 py-3 text-foreground placeholder-muted-foreground focus:outline-none focus:border-[#FF4D00] transition-colors"
                             placeholder="your.email@example.com"
                         />
                     </div>
 
                     <div>
-                        <label htmlFor="trial-phone" className="block text-white text-sm font-medium mb-2">
+                        <label htmlFor="trial-phone" className="block text-foreground text-sm font-medium mb-2">
                             Phone Number *
                         </label>
                         <input
@@ -135,13 +162,13 @@ export default function TrialModal({ isOpen, onClose }: TrialModalProps) {
                             required
                             value={formData.phone}
                             onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                            className="w-full bg-white/5 border border-border rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#FF4D00] transition-colors"
+                            className="w-full bg-card border border-border rounded-lg px-4 py-3 text-foreground placeholder-muted-foreground focus:outline-none focus:border-[#FF4D00] transition-colors"
                             placeholder="+91 98765 43210"
                         />
                     </div>
 
                     <div>
-                        <label htmlFor="trial-time" className="block text-white text-sm font-medium mb-2 flex items-center gap-2">
+                        <label htmlFor="trial-time" className="block text-foreground text-sm font-medium mb-2 flex items-center gap-2">
                             <Clock className="w-4 h-4" />
                             Preferred Time Slot *
                         </label>
@@ -150,7 +177,7 @@ export default function TrialModal({ isOpen, onClose }: TrialModalProps) {
                             required
                             value={formData.preferredTime}
                             onChange={(e) => setFormData({ ...formData, preferredTime: e.target.value })}
-                            className="w-full bg-white/5 border border-border rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#FF4D00] transition-colors cursor-pointer"
+                            className="w-full bg-card border border-border rounded-lg px-4 py-3 text-foreground focus:outline-none focus:border-[#FF4D00] transition-colors cursor-pointer"
                         >
                             <option value="morning">Morning (6:00 AM - 10:00 AM)</option>
                             <option value="afternoon">Afternoon (10:00 AM - 4:00 PM)</option>
@@ -160,14 +187,14 @@ export default function TrialModal({ isOpen, onClose }: TrialModalProps) {
                     </div>
 
                     <div>
-                        <label htmlFor="trial-goal" className="block text-white text-sm font-medium mb-2">
+                        <label htmlFor="trial-goal" className="block text-foreground text-sm font-medium mb-2">
                             Fitness Goal
                         </label>
                         <textarea
                             id="trial-goal"
                             value={formData.fitnessGoal}
                             onChange={(e) => setFormData({ ...formData, fitnessGoal: e.target.value })}
-                            className="w-full bg-white/5 border border-border rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#FF4D00] transition-colors resize-none"
+                            className="w-full bg-card border border-border rounded-lg px-4 py-3 text-foreground placeholder-muted-foreground focus:outline-none focus:border-[#FF4D00] transition-colors resize-none"
                             placeholder="Tell us about your fitness goals (optional)"
                             rows={3}
                         />
@@ -177,12 +204,12 @@ export default function TrialModal({ isOpen, onClose }: TrialModalProps) {
                     <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="w-full bg-[#FF4D00] text-white font-bold py-3 rounded-lg hover:bg-[#FF4D00]/90 transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="w-full bg-[#FF4D00] text-foreground font-bold py-3 rounded-lg hover:bg-[#FF4D00]/90 transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                         {isSubmitting ? "Booking Your Trial..." : "Start My Free Trial"}
                     </button>
 
-                    <p className="text-xs text-gray-500 text-center">
+                    <p className="text-xs text-muted-foreground text-center">
                         No credit card required. Cancel anytime during the trial period.
                     </p>
                 </form>

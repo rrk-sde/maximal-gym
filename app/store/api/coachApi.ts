@@ -49,6 +49,10 @@ export const coachApi = api.injectEndpoints({
             query: (identifier) => `/coaches/${identifier}`,
             providesTags: ['Coaches'],
         }),
+        getCoachById: builder.query<CoachResponse, string>({
+            query: (id) => `/coaches/${id}`,
+            providesTags: ['Coaches'],
+        }),
         createCoach: builder.mutation<CoachResponse, Partial<Coach>>({
             query: (coachData) => ({
                 url: '/coaches',
@@ -78,7 +82,9 @@ export const coachApi = api.injectEndpoints({
 export const {
     useGetAllCoachesQuery,
     useGetCoachQuery,
+    useGetCoachByIdQuery,
     useCreateCoachMutation,
     useUpdateCoachMutation,
     useDeleteCoachMutation,
 } = coachApi;
+

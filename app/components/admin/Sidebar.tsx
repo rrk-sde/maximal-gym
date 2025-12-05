@@ -1,40 +1,71 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { Users, Calendar, Dumbbell, Settings, LogOut } from "lucide-react";
+import { LayoutDashboard, Calendar, Mail, Dumbbell, HelpCircle, Building2, LogOut } from "lucide-react";
 
 export default function Sidebar() {
     const pathname = usePathname();
     const router = useRouter();
     const [isOpen, setIsOpen] = useState(false);
+    const [userRole, setUserRole] = useState<string>("user");
+
+    useEffect(() => {
+        // Get user role from localStorage
+        const userStr = localStorage.getItem("gym-user");
+        if (userStr) {
+            const user = JSON.parse(userStr);
+            setUserRole(user.role || "user");
+        }
+    }, []);
 
     const menu = [
         {
-            label: "Members",
-            href: "/admin/members",
-            icon: <Users className="text-[18px]" />,
+            label: "Dashboard",
+            href: "/admin",
+            icon: <LayoutDashboard className="text-[18px]" />,
+            roles: ["admin", "superadmin"],
         },
         {
-            label: "Classes",
-            href: "/admin/classes",
+            label: "Bookings",
+            href: "/admin/bookings",
             icon: <Calendar className="text-[18px]" />,
+            roles: ["admin", "superadmin"],
         },
         {
-            label: "Trainers",
-            href: "/admin/trainers",
+            label: "Enquiries",
+            href: "/admin/contacts",
+            icon: <Mail className="text-[18px]" />,
+            roles: ["admin", "superadmin"],
+        },
+        {
+            label: "Coaches",
+            href: "/admin/coaches",
             icon: <Dumbbell className="text-[18px]" />,
+            roles: ["admin", "superadmin"],
         },
         {
-            label: "Settings",
-            href: "/admin/settings",
-            icon: <Settings className="text-[18px]" />,
+            label: "FAQs",
+            href: "/admin/faqs",
+            icon: <HelpCircle className="text-[18px]" />,
+            roles: ["admin", "superadmin"],
+        },
+        {
+            label: "Tenants",
+            href: "/admin/tenants",
+            icon: <Building2 className="text-[18px]" />,
+            roles: ["superadmin"], // Only superadmins can see this
         },
     ];
 
+    // Filter menu based on user role
+    const filteredMenu = menu.filter(item => item.roles.includes(userRole));
+
     const handleLogout = () => {
-        router.push("/");
+        localStorage.removeItem("gym-token");
+        localStorage.removeItem("gym-user");
+        router.push("/admin/login");
     };
 
     return (
@@ -79,8 +110,10 @@ export default function Sidebar() {
                 </div>
 
                 <nav className="space-y-1">
-                    {menu.map((item) => {
-                        const isActive = (pathname || "").startsWith(item.href);
+                    {filteredMenu.map((item) => {
+                        const isActive = item.href === "/admin"
+                            ? pathname === "/admin"
+                            : (pathname || "").startsWith(item.href);
 
                         return (
                             <Link

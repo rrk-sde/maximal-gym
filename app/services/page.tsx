@@ -1,6 +1,8 @@
 "use client";
+import { useState } from "react";
 import { Check, Dumbbell, Users, Heart, Trophy, Clock, Zap, Target } from "lucide-react";
 import Link from "next/link";
+import TrialModal from "../components/TrialModal";
 
 interface Service {
     id: number;
@@ -13,6 +15,8 @@ interface Service {
 }
 
 export default function ServicesPage() {
+    const [isTrialModalOpen, setIsTrialModalOpen] = useState(false);
+
     const services: Service[] = [
         {
             id: 1,
@@ -147,8 +151,8 @@ export default function ServicesPage() {
                             <div
                                 key={service.id}
                                 className={`relative bg-white/5 border rounded-2xl p-8 hover:bg-white/[0.07] transition-all duration-300 ${service.popular
-                                        ? "border-[#FF4D00] ring-2 ring-[#FF4D00]/30"
-                                        : "border-white/10"
+                                    ? "border-[#FF4D00] ring-2 ring-[#FF4D00]/30"
+                                    : "border-white/10"
                                     }`}
                             >
                                 {service.popular && (
@@ -178,12 +182,12 @@ export default function ServicesPage() {
                                         </li>
                                     ))}
                                 </ul>
-                                <Link
-                                    href="/#home"
-                                    className="block w-full text-center px-6 py-3 bg-[#FF4D00] text-white font-bold rounded-lg hover:bg-[#FF4D00]/90 transition-colors"
+                                <button
+                                    onClick={() => setIsTrialModalOpen(true)}
+                                    className="block w-full text-center px-6 py-3 bg-[#FF4D00] text-white font-bold rounded-lg hover:bg-[#FF4D00]/90 transition-colors cursor-pointer"
                                 >
                                     Get Started
-                                </Link>
+                                </button>
                             </div>
                         );
                     })}
@@ -224,12 +228,12 @@ export default function ServicesPage() {
                         Join Maximal Gym today and get access to world-class facilities, expert trainers, and a supportive community.
                     </p>
                     <div className="flex flex-wrap justify-center gap-4">
-                        <Link
-                            href="/#home"
-                            className="px-8 py-4 bg-[#FF4D00] text-white font-bold rounded-lg hover:bg-[#FF4D00]/90 transition-colors inline-block"
+                        <button
+                            onClick={() => setIsTrialModalOpen(true)}
+                            className="px-8 py-4 bg-[#FF4D00] text-white font-bold rounded-lg hover:bg-[#FF4D00]/90 transition-colors cursor-pointer"
                         >
                             Book a Free Trial
-                        </Link>
+                        </button>
                         <Link
                             href="/trainers/coaches"
                             className="px-8 py-4 border border-white/20 text-white font-bold rounded-lg hover:bg-white/5 transition-colors inline-block"
@@ -239,6 +243,11 @@ export default function ServicesPage() {
                     </div>
                 </div>
             </div>
+
+            <TrialModal
+                isOpen={isTrialModalOpen}
+                onClose={() => setIsTrialModalOpen(false)}
+            />
         </main>
     );
 }

@@ -10,10 +10,10 @@ export default function Header() {
     const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
     return (
-        <header className="fixed top-0 left-0 right-0 z-[9999] bg-gradient-to-r from-background/95 via-blue-950/20 to-background/95 backdrop-blur-2xl border-b border-white/20 shadow-xl">
+        <header className="fixed top-0 left-0 right-0 z-[9999] bg-gradient-to-r from-background/95 via-blue-950/20 to-background/95 backdrop-blur-2xl border-b border-border shadow-xl">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(59,130,246,0.1),transparent_50%),radial-gradient(circle_at_70%_50%,rgba(147,197,253,0.08),transparent_50%)] pointer-events-none" />
             <div className="container mx-auto px-6 lg:px-12 relative z-10">
-                <div className="flex items-center justify-between h-20">
+                <div className="flex items-center justify-between h-20 relative z-10">
                     {/* Logo */}
                     <Link href="/" className="flex items-center gap-3">
                         <div className="w-8 h-8 relative">
@@ -93,7 +93,7 @@ export default function Header() {
                         <ThemeToggle />
                         <Link
                             href="/admin"
-                            className="px-6 py-2.5 border border-border text-foreground text-sm font-medium rounded-md hover:bg-card transition-all"
+                            className="px-6 py-2.5 bg-[#FF4D00] text-white text-sm font-medium rounded-md hover:bg-[#FF4D00]/90 transition-all shadow-lg shadow-[#FF4D00]/20"
                         >
                             Register Now
                         </Link>
@@ -114,7 +114,7 @@ export default function Header() {
             {/* Mobile Menu Backdrop */}
             {isMenuOpen && (
                 <div
-                    className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[9998] lg:hidden"
+                    className="fixed inset-0 bg-background/50 backdrop-blur-sm z-[9997] lg:hidden"
                     onClick={() => setIsMenuOpen(false)}
                     aria-hidden="true"
                 />
@@ -122,7 +122,7 @@ export default function Header() {
 
             {/* Mobile Menu */}
             {isMenuOpen && (
-                <div className="lg:hidden bg-background/95 backdrop-blur-2xl border-t border-white/20 shadow-xl relative z-[9999]">
+                <div className="lg:hidden bg-background/95 backdrop-blur-2xl border-t border-border shadow-xl relative z-[9998]">
                     <nav className="container mx-auto px-6 py-6 flex flex-col gap-4">
                         <a
                             href="#programs"
@@ -166,9 +166,15 @@ export default function Header() {
                         >
                             Articles
                         </a>
+
+                        {/* Theme Toggle for Mobile */}
+                        <div className="flex justify-center mt-4 mb-2">
+                            <ThemeToggle />
+                        </div>
+
                         <Link
                             href="/admin"
-                            className="mt-4 px-6 py-3 border border-border text-foreground rounded-md font-medium text-center"
+                            className="px-6 py-3 bg-[#FF4D00] text-white rounded-md font-medium text-center hover:bg-[#FF4D00]/90 transition-all shadow-lg shadow-[#FF4D00]/20"
                             onClick={() => setIsMenuOpen(false)}
                         >
                             Register Now

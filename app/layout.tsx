@@ -3,9 +3,8 @@ import { Oswald, Outfit } from "next/font/google";
 import "./globals.css";
 import StoreProvider from "./store/storeProvider";
 import { Toaster } from "sonner";
-import Header from "./components/layout/Header";
-import Footer from "./components/sections/Footer";
 import { ThemeProvider } from "./components/ThemeProvider";
+import ClientLayout from "./components/ClientLayout";
 
 const oswald = Oswald({
     subsets: ["latin"],
@@ -36,9 +35,9 @@ export default function RootLayout({
             <body className={outfit.className}>
                 <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
                     <StoreProvider>
-                        <Header />
-                        {children}
-                        <Footer />
+                        <ClientLayout>
+                            {children}
+                        </ClientLayout>
                         <Toaster position="top-center" />
                     </StoreProvider>
                 </ThemeProvider>

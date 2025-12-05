@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 // Define base URL for API
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5001/api';
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
 
 // Create base API configuration
 export const api = createApi({
@@ -16,10 +16,17 @@ export const api = createApi({
                     headers.set('authorization', `Bearer ${token}`);
                 }
             }
+
+            // Add tenant ID from environment variable
+            const tenantId = process.env.NEXT_PUBLIC_TENANT_ID;
+            if (tenantId) {
+                headers.set('x-tenant-id', tenantId);
+            }
+
             return headers;
         },
     }),
-    tagTypes: ['Auth', 'Bookings', 'Coaches', 'FAQs', 'Contacts'],
+    tagTypes: ['Auth', 'Bookings', 'Coaches', 'FAQs', 'Contacts', 'Tenants'],
     endpoints: () => ({}),
 });
 
