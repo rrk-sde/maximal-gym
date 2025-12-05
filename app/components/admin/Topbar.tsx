@@ -1,9 +1,19 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import { useState, useEffect } from "react";
 
 export default function Topbar() {
     const pathname = usePathname();
+    const [user, setUser] = useState<any>(null);
+
+    useEffect(() => {
+        // Get user data from localStorage
+        const userStr = localStorage.getItem("gym-user");
+        if (userStr) {
+            setUser(JSON.parse(userStr));
+        }
+    }, []);
 
     const generateBreadcrumbs = (): Array<{ label: string; href?: string }> => {
         const segments = (pathname || "").split("/").filter(Boolean);
@@ -20,6 +30,11 @@ export default function Topbar() {
             members: "Members",
             classes: "Classes",
             trainers: "Trainers",
+            coaches: "Coaches",
+            contacts: "Enquiries",
+            bookings: "Bookings",
+            faqs: "FAQs",
+            tenants: "Tenants",
             settings: "Settings",
             add: "Create",
             edit: "Edit",
@@ -50,6 +65,19 @@ export default function Topbar() {
     };
 
     const breadcrumbs = generateBreadcrumbs();
+
+    // Get user display info
+    const userName = user?.name || "Admin User";
+    const userRole = user?.role || "admin";
+    const roleDisplay = userRole === "superadmin" ? "Superadmin" : "Administrator";
+
+    // Get initials for avatar
+    const initials = userName
+        .split(" ")
+        .map((n: string) => n[0])
+        .join("")
+        .toUpperCase()
+        .slice(0, 2);
 
     return (
         <header className="w-full bg-white border-b shadow-sm px-4 md:px-6 py-2 rounded-md flex items-center justify-between">
@@ -85,11 +113,11 @@ export default function Topbar() {
             <div className="flex items-center gap-2 md:gap-4 flex-shrink-0">
                 <div className="flex items-center gap-3">
                     <div className="hidden md:block text-right">
-                        <div className="text-sm font-semibold text-gray-900">Admin User</div>
-                        <div className="text-xs text-gray-500">Administrator</div>
+                        <div className="text-sm font-semibold text-gray-900">{userName}</div>
+                        <div className="text-xs text-gray-500">{roleDisplay}</div>
                     </div>
-                    <div className="w-10 h-10 bg-[#FF4D00] rounded-full flex items-center justify-center text-white font-semibold">
-                        AU
+                    <div className="w-10 h-10 bg-[#FF4D00] rounded-full flex items-center justify-center text-white font-semibold text-sm">
+                        {initials}
                     </div>
                 </div>
             </div>
