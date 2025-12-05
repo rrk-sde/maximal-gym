@@ -33,7 +33,8 @@ export default function AdminLayout({
 
         try {
             const userData = JSON.parse(user);
-            if (userData.role !== "admin") {
+            // Allow both admin and superadmin roles
+            if (userData.role !== "admin" && userData.role !== "superadmin") {
                 localStorage.removeItem("gym-token");
                 localStorage.removeItem("gym-user");
                 router.push("/admin/login");

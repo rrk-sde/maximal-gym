@@ -56,7 +56,9 @@ export default function AdminLoginPage() {
                                 </div>
                                 <input
                                     id="email"
+                                    name="email"
                                     type="email"
+                                    autoComplete="email"
                                     required
                                     value={formData.email}
                                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -76,7 +78,9 @@ export default function AdminLoginPage() {
                                 </div>
                                 <input
                                     id="password"
+                                    name="password"
                                     type="password"
+                                    autoComplete="current-password"
                                     required
                                     value={formData.password}
                                     onChange={(e) => setFormData({ ...formData, password: e.target.value })}
