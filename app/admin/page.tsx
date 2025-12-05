@@ -3,7 +3,7 @@
 import { useGetAllBookingsQuery } from "@/app/store/api/bookingApi";
 import { useGetAllContactsQuery } from "@/app/store/api/contactApi";
 import { useGetAllCoachesQuery } from "@/app/store/api/coachApi";
-import { useGetAllFaqsQuery } from "@/app/store/api/faqApi";
+import { useGetAllFAQsQuery } from "@/app/store/api/faqApi";
 import { Calendar, Mail, Dumbbell, HelpCircle, TrendingUp, Users } from "lucide-react";
 
 export default function AdminDashboard() {
@@ -11,13 +11,13 @@ export default function AdminDashboard() {
     const { data: bookingsData, isLoading: bookingsLoading } = useGetAllBookingsQuery({ page: 1, limit: 100 });
     const { data: contactsData, isLoading: contactsLoading } = useGetAllContactsQuery({ page: 1, limit: 100 });
     const { data: coachesData, isLoading: coachesLoading } = useGetAllCoachesQuery({ page: 1, limit: 100 });
-    const { data: faqsData, isLoading: faqsLoading } = useGetAllFaqsQuery({ page: 1, limit: 100 });
+    const { data: faqsData, isLoading: faqsLoading } = useGetAllFAQsQuery({ category: undefined, isActive: undefined });
 
     // Extract counts
     const totalBookings = bookingsData?.data?.pagination?.total || 0;
     const totalContacts = contactsData?.data?.pagination?.total || 0;
     const totalCoaches = coachesData?.data?.coaches?.length || 0;
-    const totalFaqs = faqsData?.data?.pagination?.total || 0;
+    const totalFaqs = faqsData?.data?.faqs?.length || 0;
 
     // Get pending contacts count
     const pendingContacts = contactsData?.data?.contacts?.filter((c: any) => c.status === 'pending').length || 0;
@@ -143,8 +143,8 @@ export default function AdminDashboard() {
                                     <div className="text-sm text-gray-500 truncate max-w-[200px]">{contact.subject}</div>
                                 </div>
                                 <span className={`px-2 py-1 text-xs font-semibold rounded-full ${contact.status === 'pending' ? 'bg-yellow-100 text-yellow-800' :
-                                        contact.status === 'resolved' ? 'bg-green-100 text-green-800' :
-                                            'bg-gray-100 text-gray-800'
+                                    contact.status === 'resolved' ? 'bg-green-100 text-green-800' :
+                                        'bg-gray-100 text-gray-800'
                                     }`}>
                                     {contact.status}
                                 </span>
