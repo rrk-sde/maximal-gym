@@ -10,7 +10,7 @@ export default function AdminDashboard() {
     // Fetch data from APIs
     const { data: bookingsData, isLoading: bookingsLoading } = useGetAllBookingsQuery({ page: 1, limit: 100 });
     const { data: contactsData, isLoading: contactsLoading } = useGetAllContactsQuery({ page: 1, limit: 100 });
-    const { data: coachesData, isLoading: coachesLoading } = useGetAllCoachesQuery({ page: 1, limit: 100 });
+    const { data: coachesData, isLoading: coachesLoading } = useGetAllCoachesQuery({ isActive: undefined });
     const { data: faqsData, isLoading: faqsLoading } = useGetAllFAQsQuery({ category: undefined, isActive: undefined });
 
     // Extract counts

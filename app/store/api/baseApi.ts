@@ -15,12 +15,17 @@ export const api = createApi({
                 if (token) {
                     headers.set('authorization', `Bearer ${token}`);
                 }
-            }
 
-            // Add tenant ID from environment variable
-            const tenantId = process.env.NEXT_PUBLIC_TENANT_ID;
-            if (tenantId) {
-                headers.set('x-tenant-id', tenantId);
+                // Priority: selected-tenant-id (for superadmin filtering) > NEXT_PUBLIC_TENANT_ID
+                const selectedTenantId = localStorage.getItem('selected-tenant-id');
+                if (selectedTenantId) {
+                    headers.set('x-tenant-id', selectedTenantId);
+                } else {
+                    const envTenantId = process.env.NEXT_PUBLIC_TENANT_ID;
+                    if (envTenantId) {
+                        headers.set('x-tenant-id', envTenantId);
+                    }
+                }
             }
 
             return headers;

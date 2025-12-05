@@ -2,6 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
+import TenantSelector from "./TenantSelector";
 
 export default function Topbar() {
     const pathname = usePathname();
@@ -108,6 +109,9 @@ export default function Topbar() {
                     {breadcrumbs.slice(-1)[0]?.label || "Dashboard"}
                 </h1>
             </div>
+
+            {/* Tenant Selector (superadmin only) */}
+            <TenantSelector />
 
             {/* User Badge */}
             <div className="flex items-center gap-2 md:gap-4 flex-shrink-0">
