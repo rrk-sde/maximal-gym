@@ -74,7 +74,7 @@ ${formData.fitnessGoal ? `\nFitness Goal: ${formData.fitnessGoal}` : ''}`;
 
     return (
         <div className="fixed inset-0 z-[10000] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
-            <div className="bg-card border border-border rounded-2xl w-full max-w-md p-6 relative max-h-[90vh] overflow-y-auto">
+            <div className="bg-white/80 backdrop-blur-md border-white/20 dark:bg-card dark:border-border border rounded-2xl w-full max-w-md p-6 relative max-h-[90vh] overflow-y-auto shadow-xl">
                 {/* Close Button */}
                 <button
                     onClick={onClose}
