@@ -13,6 +13,8 @@ export default function TenantSelector({ onTenantChange }: TenantSelectorProps) 
     const [isSuperAdmin, setIsSuperAdmin] = useState(false);
     const { data: tenantsData } = useGetAllTenantsQuery({});
 
+    const tenants = tenantsData?.data?.tenants || [];
+
     useEffect(() => {
         // Check if user is superadmin
         const userStr = localStorage.getItem("gym-user");
@@ -27,6 +29,15 @@ export default function TenantSelector({ onTenantChange }: TenantSelectorProps) 
             }
         }
     }, []);
+
+    // Auto-select first tenant if none selected and tenants are loaded
+    useEffect(() => {
+        if (isSuperAdmin && !selectedTenant && tenants.length > 0) {
+            const firstTenantId = tenants[0]._id;
+            setSelectedTenant(firstTenantId);
+            localStorage.setItem("selected-tenant-id", firstTenantId);
+        }
+    }, [isSuperAdmin, selectedTenant, tenants]);
 
     const handleTenantChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const tenantId = e.target.value;
@@ -53,7 +64,6 @@ export default function TenantSelector({ onTenantChange }: TenantSelectorProps) 
         return null;
     }
 
-    const tenants = tenantsData?.data?.tenants || [];
 
     return (
         <div className="flex items-center gap-2 border-r pr-4">
@@ -63,7 +73,7 @@ export default function TenantSelector({ onTenantChange }: TenantSelectorProps) 
                 onChange={handleTenantChange}
                 className="text-sm border border-gray-300 rounded-md px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-[#FF4D00] focus:border-transparent text-gray-900 bg-white"
             >
-                <option value="">All Tenants</option>
+                <option value="">Select Tenant (required)</option>
                 {tenants.map((tenant: any) => (
                     <option key={tenant._id} value={tenant._id}>
                         {tenant.name}
