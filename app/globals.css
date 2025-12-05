@@ -83,6 +83,7 @@
   --ring: 255 77 0;
 }
 
+
 @layer base {
   * {
     @apply border-border;
@@ -91,8 +92,58 @@
   body {
     @apply bg-[rgb(var(--background))] text-[rgb(var(--foreground))] antialiased;
   }
+
+  /* Universal input text color fix - ensure visibility on all backgrounds */
+  input:not([type="checkbox"]):not([type="radio"]),
+  textarea,
+  select {
+    /* Force black text by default (works on white/light backgrounds) */
+    color: #1f2937 !important;
+    /* Ensure good contrast */
+    -webkit-text-fill-color: #1f2937 !important;
+  }
+
+  /* Dark mode: white text */
+  :root input:not([type="checkbox"]):not([type="radio"]),
+  :root textarea,
+  :root select {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+  }
+
+  /* Light mode: dark text (override dark mode if .light exists) */
+  .light input:not([type="checkbox"]):not([type="radio"]),
+  .light textarea,
+  .light select,
+  /* Also target inputs in containers with white/light backgrounds */
+  .bg-white input:not([type="checkbox"]):not([type="radio"]),
+  .bg-white textarea,
+  .bg-white select,
+  .bg-gray-100 input:not([type="checkbox"]):not([type="radio"]),
+  .bg-gray-100 textarea,
+  .bg-gray-100 select {
+    color: #1f2937 !important;
+    -webkit-text-fill-color: #1f2937 !important;
+  }
+
+  /* Placeholders - ensure visibility */
+  input::placeholder,
+  textarea::placeholder {
+    opacity: 0.5 !important;
+  }
+
+  /* Remove any text masking */
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="password"],
+  input[type="number"],
+  textarea {
+    -webkit-text-security: none !important;
+  }
 }
 
+/* 
 @layer utilities {
   .text-muted {
     color: rgb(var(--foreground) / 0.6);
@@ -117,7 +168,7 @@
   .border-border {
     border-color: rgb(var(--border) / var(--border-opacity));
   }
-}
+} */
 
 /* Custom Animations */
 @keyframes fade-in {
