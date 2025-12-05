@@ -103,7 +103,7 @@ export default function Sidebar() {
         `}
             >
                 <div className="mb-6">
-                    <h2 className="text-2xl font-bold">
+                    <h2 className="text-2xl font-bold text-gray-900">
                         GYMMAX<span className="text-[rgb(var(--primary))]">.</span>
                     </h2>
                     <p className="text-sm text-gray-500 mt-1">Admin Panel</p>
