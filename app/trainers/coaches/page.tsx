@@ -36,7 +36,7 @@ export default function OurCoachesPage() {
                         <div key={coach._id} className="bg-white/5 border border-white/10 rounded-xl p-6">
                             <div className="w-20 h-20 bg-[#FF4D00] rounded-full flex items-center justify-center mx-auto mb-4">
                                 <span className="text-white text-2xl font-bold">
-                                    {coach.name.split(' ')[1][0]}
+                                    {coach.name.split(' ').length > 1 ? coach.name.split(' ')[1][0] : coach.name[0]}
                                 </span>
                             </div>
                             <h3 className="text-xl font-bold text-center mb-2">{coach.name}</h3>
