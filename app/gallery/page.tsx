@@ -97,16 +97,16 @@ export default function GalleryPage() {
             : images.filter((img) => img.category === selectedCategory);
 
     return (
-        <main className="min-h-screen bg-black text-white pt-28 pb-20">
+        <main className="min-h-screen bg-background text-foreground pt-28 pb-20">
             <div className="container mx-auto px-6 lg:px-12">
                 {/* Header */}
                 <div className="text-center mb-16">
                     <h1 className="text-5xl md:text-6xl font-bold mb-4">
-                        <span className="text-white">Gallery</span>
+                        <span className="text-foreground">Gallery</span>
                         <br />
-                        <span className="text-gray-400">Our Facilities</span>
+                        <span className="text-muted-foreground">Our Facilities</span>
                     </h1>
-                    <p className="text-gray-400 text-lg max-w-2xl mx-auto mt-6">
+                    <p className="text-muted-foreground text-lg max-w-2xl mx-auto mt-6">
                         Explore our state-of-the-art facilities, equipment, and training spaces designed to help you achieve your fitness goals.
                     </p>
                 </div>
@@ -118,8 +118,8 @@ export default function GalleryPage() {
                             key={category}
                             onClick={() => setSelectedCategory(category)}
                             className={`px-6 py-2 rounded-lg font-semibold transition-all capitalize ${selectedCategory === category
-                                    ? "bg-[#FF4D00] text-white"
-                                    : "bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white border border-white/10"
+                                ? "bg-[#FF4D00] text-white"
+                                : "bg-card text-muted-foreground hover:bg-muted hover:text-foreground border border-border"
                                 }`}
                         >
                             {category}
@@ -158,7 +158,7 @@ export default function GalleryPage() {
                 {/* Empty State */}
                 {filteredImages.length === 0 && (
                     <div className="text-center py-20">
-                        <p className="text-gray-400 text-lg">
+                        <p className="text-muted-foreground text-lg">
                             No images found in this category.
                         </p>
                     </div>
@@ -173,7 +173,7 @@ export default function GalleryPage() {
                 >
                     <button
                         onClick={() => setLightboxImage(null)}
-                        className="absolute top-4 right-4 w-12 h-12 bg-white/10 border border-white/20 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors"
+                        className="absolute top-4 right-4 w-12 h-12 bg-white/10 border border-border rounded-full flex items-center justify-center hover:bg-white/20 transition-colors"
                     >
                         <X className="w-6 h-6 text-white" />
                     </button>

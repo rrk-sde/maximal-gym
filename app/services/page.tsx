@@ -129,16 +129,16 @@ export default function ServicesPage() {
     ];
 
     return (
-        <main className="min-h-screen bg-black text-white pt-28 pb-20">
+        <main className="min-h-screen bg-background text-foreground pt-28 pb-20">
             <div className="container mx-auto px-6 lg:px-12">
                 {/* Header */}
                 <div className="text-center mb-16">
                     <h1 className="text-5xl md:text-6xl font-bold mb-4">
-                        <span className="text-white">Our Services</span>
+                        <span className="text-foreground">Our Services</span>
                         <br />
-                        <span className="text-gray-400">Transform Your Life</span>
+                        <span className="text-muted-foreground">Transform Your Life</span>
                     </h1>
-                    <p className="text-gray-400 text-lg max-w-3xl mx-auto mt-6">
+                    <p className="text-muted-foreground text-lg max-w-3xl mx-auto mt-6">
                         Whether you're a beginner or an elite athlete, we have the perfect program to help you reach your fitness goals. Choose from our comprehensive range of services.
                     </p>
                 </div>
@@ -150,9 +150,9 @@ export default function ServicesPage() {
                         return (
                             <div
                                 key={service.id}
-                                className={`relative bg-white/5 border rounded-2xl p-8 hover:bg-white/[0.07] transition-all duration-300 ${service.popular
+                                className={`relative bg-card border rounded-2xl p-8 hover:bg-muted/50 transition-all duration-300 ${service.popular
                                     ? "border-[#FF4D00] ring-2 ring-[#FF4D00]/30"
-                                    : "border-white/10"
+                                    : "border-border"
                                     }`}
                             >
                                 {service.popular && (
@@ -166,11 +166,11 @@ export default function ServicesPage() {
                                     <IconComponent className="w-7 h-7 text-[#FF4D00]" />
                                 </div>
                                 <h3 className="text-2xl font-bold mb-3">{service.title}</h3>
-                                <p className="text-gray-400 mb-6 leading-relaxed">
+                                <p className="text-muted-foreground mb-6 leading-relaxed">
                                     {service.description}
                                 </p>
                                 <div className="mb-6">
-                                    <p className="text-3xl font-bold text-white">
+                                    <p className="text-3xl font-bold text-foreground">
                                         {service.price}
                                     </p>
                                 </div>
@@ -178,7 +178,7 @@ export default function ServicesPage() {
                                     {service.features.map((feature, idx) => (
                                         <li key={idx} className="flex items-start gap-3">
                                             <Check className="w-5 h-5 text-[#FF4D00] flex-shrink-0 mt-0.5" />
-                                            <span className="text-gray-300 text-sm">{feature}</span>
+                                            <span className="text-muted-foreground text-sm">{feature}</span>
                                         </li>
                                     ))}
                                 </ul>
@@ -204,13 +204,13 @@ export default function ServicesPage() {
                             return (
                                 <div
                                     key={idx}
-                                    className="bg-white/5 border border-white/10 rounded-xl p-6 hover:bg-white/[0.07] transition-all"
+                                    className="bg-card border border-border rounded-xl p-6 hover:bg-muted/50 transition-all"
                                 >
                                     <div className="w-12 h-12 bg-[#FF4D00]/10 rounded-lg flex items-center justify-center mb-4">
                                         <IconComponent className="w-6 h-6 text-[#FF4D00]" />
                                     </div>
                                     <h3 className="text-lg font-bold mb-2">{service.title}</h3>
-                                    <p className="text-gray-400 text-sm leading-relaxed">
+                                    <p className="text-muted-foreground text-sm leading-relaxed">
                                         {service.description}
                                     </p>
                                 </div>
@@ -224,7 +224,7 @@ export default function ServicesPage() {
                     <h2 className="text-3xl md:text-4xl font-bold mb-4">
                         Ready to Start Your Fitness Journey?
                     </h2>
-                    <p className="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
+                    <p className="text-muted-foreground text-lg mb-8 max-w-2xl mx-auto">
                         Join Maximal Gym today and get access to world-class facilities, expert trainers, and a supportive community.
                     </p>
                     <div className="flex flex-wrap justify-center gap-4">
@@ -236,7 +236,7 @@ export default function ServicesPage() {
                         </button>
                         <Link
                             href="/trainers/coaches"
-                            className="px-8 py-4 border border-white/20 text-white font-bold rounded-lg hover:bg-white/5 transition-colors inline-block"
+                            className="px-8 py-4 border border-border text-foreground font-bold rounded-lg hover:bg-muted/10 transition-colors inline-block"
                         >
                             Meet Our Trainers
                         </Link>
