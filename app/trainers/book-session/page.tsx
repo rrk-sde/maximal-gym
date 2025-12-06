@@ -5,7 +5,10 @@ import Link from "next/link";
 import { Calendar, Clock, User } from "lucide-react";
 import { toast } from "sonner";
 
+import { useCreateBookingMutation } from "../../store/api/bookingApi";
+
 export default function BookSessionPage() {
+    const [createBooking, { isLoading }] = useCreateBookingMutation();
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -15,28 +18,32 @@ export default function BookSessionPage() {
         date: "",
         time: "",
     });
-    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        setIsSubmitting(true);
 
-        await new Promise((resolve) => setTimeout(resolve, 1000));
+        try {
+            await createBooking(formData).unwrap();
 
-        toast.success("Session Booked! 🎯", {
-            description: "Your session has been confirmed. Check your email for details.",
-        });
+            toast.success("Session Booked! 🎯", {
+                description: "Your session has been confirmed. Check your email for details.",
+            });
 
-        setIsSubmitting(false);
-        setFormData({
-            name: "",
-            email: "",
-            phone: "",
-            coach: "",
-            sessionType: "",
-            date: "",
-            time: "",
-        });
+            setFormData({
+                name: "",
+                email: "",
+                phone: "",
+                coach: "",
+                sessionType: "",
+                date: "",
+                time: "",
+            });
+        } catch (error: any) {
+            console.error("Booking Error:", error);
+            toast.error("Booking Failed", {
+                description: error?.data?.message || "Something went wrong. Please try again.",
+            });
+        }
     };
 
     return (
@@ -179,10 +186,10 @@ export default function BookSessionPage() {
 
                     <button
                         type="submit"
-                        disabled={isSubmitting}
+                        disabled={isLoading}
                         className="w-full bg-primary text-white font-bold py-4 rounded-lg hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                        {isSubmitting ? "Booking..." : "Confirm Booking"}
+                        {isLoading ? "Booking..." : "Confirm Booking"}
                     </button>
                 </form>
 
