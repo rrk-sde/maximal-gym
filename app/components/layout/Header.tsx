@@ -12,7 +12,7 @@ export default function Header() {
     return (
         <header className="fixed top-0 left-0 right-0 z-[9999] bg-gradient-to-r from-background/95 via-blue-950/20 to-background/95 backdrop-blur-2xl border-b border-border shadow-xl">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(59,130,246,0.1),transparent_50%),radial-gradient(circle_at_70%_50%,rgba(147,197,253,0.08),transparent_50%)] pointer-events-none" />
-            <div className="container mx-auto px-6 lg:px-12 relative z-10">
+            <div className="container mx-auto px-6 lg:px-12 relative z-[10001]">
                 <div className="flex items-center justify-between h-20 relative z-10">
                     {/* Logo */}
                     <Link href="/" className="flex items-center gap-3">
