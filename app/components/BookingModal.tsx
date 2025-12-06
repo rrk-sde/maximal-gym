@@ -83,7 +83,7 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
                             required
                             value={formData.name}
                             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                            className="w-full bg-card border border-border rounded-lg px-4 py-3 text-foreground placeholder-muted-foreground focus:outline-none focus:border-[#FF4D00] transition-colors"
+                            className="w-full bg-card border border-border rounded-lg px-4 py-3 text-foreground placeholder-muted-foreground focus:outline-none focus:border-primary transition-colors"
                             placeholder="Enter your full name"
                         />
                     </div>
@@ -99,7 +99,7 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
                                 required
                                 value={formData.email}
                                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                className="w-full bg-card border border-border rounded-lg px-4 py-3 text-foreground placeholder-muted-foreground focus:outline-none focus:border-[#FF4D00] transition-colors"
+                                className="w-full bg-card border border-border rounded-lg px-4 py-3 text-foreground placeholder-muted-foreground focus:outline-none focus:border-primary transition-colors"
                                 placeholder="your.email@example.com"
                             />
                         </div>
@@ -114,7 +114,7 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
                                 required
                                 value={formData.phone}
                                 onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                                className="w-full bg-card border border-border rounded-lg px-4 py-3 text-foreground placeholder-muted-foreground focus:outline-none focus:border-[#FF4D00] transition-colors"
+                                className="w-full bg-card border border-border rounded-lg px-4 py-3 text-foreground placeholder-muted-foreground focus:outline-none focus:border-primary transition-colors"
                                 placeholder="+91 98765 43210"
                             />
                         </div>
@@ -129,7 +129,7 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
                             required
                             value={formData.coach}
                             onChange={(e) => setFormData({ ...formData, coach: e.target.value })}
-                            className="w-full bg-card border border-border rounded-lg px-4 py-3 text-foreground focus:outline-none focus:border-[#FF4D00] transition-colors cursor-pointer"
+                            className="w-full bg-card border border-border rounded-lg px-4 py-3 text-foreground focus:outline-none focus:border-primary transition-colors cursor-pointer"
                         >
                             <option value="">Select a coach</option>
                             <option value="vikram">Coach Vikram - Strength & Conditioning</option>
@@ -147,7 +147,7 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
                             required
                             value={formData.sessionType}
                             onChange={(e) => setFormData({ ...formData, sessionType: e.target.value })}
-                            className="w-full bg-card border border-border rounded-lg px-4 py-3 text-foreground focus:outline-none focus:border-[#FF4D00] transition-colors cursor-pointer"
+                            className="w-full bg-card border border-border rounded-lg px-4 py-3 text-foreground focus:outline-none focus:border-primary transition-colors cursor-pointer"
                         >
                             <option value="">Select session type</option>
                             <option value="personal">Personal Training (1 hour) - ₹1,500</option>
@@ -168,7 +168,7 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
                                 required
                                 value={formData.date}
                                 onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                                className="w-full bg-card border border-border rounded-lg px-4 py-3 text-foreground focus:outline-none focus:border-[#FF4D00] transition-colors cursor-pointer"
+                                className="w-full bg-card border border-border rounded-lg px-4 py-3 text-foreground focus:outline-none focus:border-primary transition-colors cursor-pointer"
                             />
                         </div>
 
@@ -182,7 +182,7 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
                                 required
                                 value={formData.time}
                                 onChange={(e) => setFormData({ ...formData, time: e.target.value })}
-                                className="w-full bg-card border border-border rounded-lg px-4 py-3 text-foreground focus:outline-none focus:border-[#FF4D00] transition-colors cursor-pointer"
+                                className="w-full bg-card border border-border rounded-lg px-4 py-3 text-foreground focus:outline-none focus:border-primary transition-colors cursor-pointer"
                             >
                                 <option value="">Select time</option>
                                 <option value="6am">6:00 AM</option>
@@ -198,7 +198,7 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
                     <button
                         type="submit"
                         disabled={isLoading}
-                        className="w-full bg-[#FF4D00] text-foreground font-bold py-4 rounded-lg hover:bg-[#FF4D00]/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="w-full bg-primary text-foreground font-bold py-4 rounded-lg hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                         {isLoading ? "Booking..." : "Confirm Booking"}
                     </button>

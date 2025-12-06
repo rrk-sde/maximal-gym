@@ -14,8 +14,12 @@ interface Service {
     popular?: boolean;
 }
 
+import { APP_CONFIG } from "../config";
+
 export default function ServicesPage() {
     const [isTrialModalOpen, setIsTrialModalOpen] = useState(false);
+
+
 
     const services: Service[] = [
         {
@@ -225,7 +229,7 @@ export default function ServicesPage() {
                         Ready to Start Your Fitness Journey?
                     </h2>
                     <p className="text-muted-foreground text-lg mb-8 max-w-2xl mx-auto">
-                        Join Maximal Gym today and get access to world-class facilities, expert trainers, and a supportive community.
+                        Join {APP_CONFIG.gymName} today and get access to world-class facilities, expert trainers, and a supportive community.
                     </p>
                     <div className="flex flex-wrap justify-center gap-4">
                         <button

@@ -4,6 +4,8 @@ import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { toast } from "sonner";
 import { useCreateContactMutation } from "../../store/api/contactApi";
 
+import { APP_CONFIG } from "../../config";
+
 export default function Contact() {
     const [formData, setFormData] = useState({
         name: "",
@@ -56,7 +58,7 @@ export default function Contact() {
                         <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
                             Get in Touch
                             <br />
-                            <span className="text-muted-foreground">With Maximal</span>
+                            <span className="text-muted-foreground">With {APP_CONFIG.gymName}</span>
                         </h2>
                         <p className="text-muted-foreground text-lg mb-8">
                             Have questions? We&apos;d love to hear from you. Send us a message and we&apos;ll respond as soon as possible.

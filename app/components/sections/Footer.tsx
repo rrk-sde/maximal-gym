@@ -5,6 +5,8 @@ import { Facebook, Twitter, Instagram, Linkedin as LinkedinIcon, Send } from "lu
 import Link from "next/link";
 import TrialModal from "../TrialModal";
 
+import { APP_CONFIG } from "../../config";
+
 export default function Footer() {
     const [isTrialModalOpen, setIsTrialModalOpen] = useState(false);
 
@@ -20,7 +22,7 @@ export default function Footer() {
                         <h2 className="text-4xl md:text-6xl font-bold text-foreground mb-6">
                             Start Your Fitness
                             <br />
-                            Journey Now with Maximal
+                            Journey Now with {APP_CONFIG.gymName}
                         </h2>
                         <p className="text-muted-foreground text-lg mb-8 max-w-2xl mx-auto">
                             Join our community and transform your life today.
@@ -50,7 +52,7 @@ export default function Footer() {
                                     <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#FF4D00" />
                                 </svg>
                             </div>
-                            <span className="text-xl font-bold text-foreground">Maximal</span>
+                            <span className="text-xl font-bold text-foreground">{APP_CONFIG.gymName}</span>
                         </Link>
                         <p className="text-muted-foreground text-sm mb-6">
                             The best unisex gym in Anishabad, Patna. Join us for a transformative fitness journey.
@@ -133,7 +135,7 @@ export default function Footer() {
 
                 {/* Copyright */}
                 <div className="py-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
-                    <p>© 2024 Maximal. All rights reserved.</p>
+                    <p>© 2024 {APP_CONFIG.gymName}. All rights reserved.</p>
                     <div className="flex gap-6">
                         <a href="#" className="hover:text-foreground transition-colors">Privacy Policy</a>
                         <a href="#" className="hover:text-foreground transition-colors">Terms of Service</a>

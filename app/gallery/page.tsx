@@ -133,7 +133,14 @@ export default function GalleryPage() {
                         <div
                             key={image.id}
                             onClick={() => setLightboxImage(image)}
-                            className="group relative aspect-square rounded-xl overflow-hidden cursor-pointer"
+                            onKeyDown={(e) => {
+                                if (e.key === "Enter" || e.key === " ") {
+                                    setLightboxImage(image);
+                                }
+                            }}
+                            role="button"
+                            tabIndex={0}
+                            className="group relative aspect-square rounded-xl overflow-hidden cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#FF4D00]"
                         >
                             <Image
                                 src={image.src}
@@ -168,8 +175,15 @@ export default function GalleryPage() {
             {/* Lightbox */}
             {lightboxImage && (
                 <div
-                    className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4"
+                    className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4 cursor-pointer"
                     onClick={() => setLightboxImage(null)}
+                    onKeyDown={(e) => {
+                        if (e.key === "Escape") {
+                            setLightboxImage(null);
+                        }
+                    }}
+                    role="button"
+                    tabIndex={0}
                 >
                     <button
                         onClick={() => setLightboxImage(null)}
@@ -178,8 +192,10 @@ export default function GalleryPage() {
                         <X className="w-6 h-6 text-white" />
                     </button>
                     <div
-                        className="relative w-full max-w-5xl aspect-video"
+                        className="relative w-full max-w-5xl aspect-video cursor-default"
                         onClick={(e) => e.stopPropagation()}
+                        onKeyDown={(e) => e.stopPropagation()}
+                        role="presentation"
                     >
                         <Image
                             src={lightboxImage.src}

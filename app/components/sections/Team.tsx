@@ -3,6 +3,8 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { useGetAllCoachesQuery, Coach } from "../../store/api/coachApi";
 
+import { APP_CONFIG } from "../../config";
+
 export default function Team() {
     const { data, isLoading } = useGetAllCoachesQuery({ isActive: true });
     const coaches = data?.data?.coaches?.slice(0, 3) || []; // Get first 3 coaches
@@ -24,10 +26,10 @@ export default function Team() {
                     <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
                         Meet the Team
                         <br />
-                        <span className="text-muted-foreground">Behind Maximal</span>
+                        <span className="text-muted-foreground">Behind {APP_CONFIG.gymName}</span>
                     </h2>
                     <p className="text-muted-foreground text-lg mt-4">
-                        Maximal works with proven experts to help you reach your goals
+                        {APP_CONFIG.gymName} works with proven experts to help you reach your goals
                     </p>
                 </div>
 

@@ -4,6 +4,8 @@ import { useState } from "react";
 import { ArrowRight, Calendar, Users, MessageCircle, Mic } from "lucide-react";
 import MarathonModal from "../MarathonModal";
 
+import { APP_CONFIG } from "../../config";
+
 export default function Goals() {
     const [isMarathonModalOpen, setIsMarathonModalOpen] = useState(false);
 
@@ -22,7 +24,7 @@ export default function Goals() {
                         <span className="text-muted-foreground">Backed by Experts</span>
                     </h2>
                     <p className="text-muted-foreground text-lg mt-6">
-                        Maximal will create personalized plans tailored to your fitness level
+                        {APP_CONFIG.gymName} will create personalized plans tailored to your fitness level
                     </p>
                 </div>
 

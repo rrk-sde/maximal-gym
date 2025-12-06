@@ -1,4 +1,5 @@
 import { User, Clock, CalendarDays } from "lucide-react";
+import { APP_CONFIG } from "../../config";
 
 export default function Levels() {
     return (
@@ -54,11 +55,11 @@ export default function Levels() {
                 {/* Right Side - Content */}
                 <div>
                     <h2 className="text-4xl md:text-5xl lg:text-5xl font-bold text-foreground mb-6 leading-tight">
-                        Experience Patna&apos;s Premier Fitness Destination at Maximal Gym
+                        Experience Patna&apos;s Premier Fitness Destination at {APP_CONFIG.gymName}
                     </h2>
 
                     <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
-                        Located in the heart of Anishabad, Maximal Gym is the best unisex gym in Patna, offering world-class equipment, expert trainers, and a supportive community. Whether you&apos;re looking for weight loss, muscle gain, or general fitness, our personalized level-based programs are designed to help you achieve your goals.
+                        Located in the heart of Anishabad, {APP_CONFIG.gymName} is the best unisex gym in Patna, offering world-class equipment, expert trainers, and a supportive community. Whether you&apos;re looking for weight loss, muscle gain, or general fitness, our personalized level-based programs are designed to help you achieve your goals.
                     </p>
 
                     <button className="px-8 py-3 border border-border text-foreground font-semibold rounded-lg hover:bg-white/5 transition-all">

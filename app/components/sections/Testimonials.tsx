@@ -3,9 +3,11 @@
 import { useState, useEffect } from "react";
 import { Quote } from "lucide-react";
 
+import { APP_CONFIG } from "../../config";
+
 const testimonials = [
     {
-        quote: "Maximal's flexible schedule is perfect for my busy IT job. I've lost 10kg in 3 months and feel more energetic than ever!",
+        quote: `${APP_CONFIG.gymName}'s flexible schedule is perfect for my busy IT job. I've lost 10kg in 3 months and feel more energetic than ever!`,
         name: "Rahul Sharma",
         role: "Software Engineer",
         image: "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=100&q=80"

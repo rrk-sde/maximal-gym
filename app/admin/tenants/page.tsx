@@ -5,6 +5,8 @@ import { useGetAllTenantsQuery, useDeleteTenantMutation, useCreateTenantMutation
 import { toast } from "sonner";
 import { Plus, Edit, Trash2, X, Check, Building2 } from "lucide-react";
 
+import { APP_CONFIG } from "../../config";
+
 export default function TenantsPage() {
     const [showModal, setShowModal] = useState(false);
     const [editingTenant, setEditingTenant] = useState<any>(null);
@@ -255,7 +257,7 @@ export default function TenantsPage() {
                                         value={formData.name}
                                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                                         className="w-full px-4 py-2 border rounded-md text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                        placeholder="Maximal Gym"
+                                        placeholder={APP_CONFIG.gymName}
                                     />
                                 </div>
 
@@ -269,7 +271,7 @@ export default function TenantsPage() {
                                         value={formData.slug}
                                         onChange={(e) => setFormData({ ...formData, slug: e.target.value.toLowerCase().replace(/\s+/g, '-') })}
                                         className="w-full px-4 py-2 border rounded-md text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                        placeholder="maximal-gym"
+                                        placeholder={APP_CONFIG.gymName.toLowerCase().replace(/\s+/g, '-')}
                                     />
                                 </div>
 

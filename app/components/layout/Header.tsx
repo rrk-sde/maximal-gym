@@ -5,6 +5,8 @@ import { useState } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
 import ThemeToggle from "../ThemeToggle";
 
+import { APP_CONFIG } from "../../config";
+
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
@@ -21,7 +23,7 @@ export default function Header() {
                                 <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#FF4D00" />
                             </svg>
                         </div>
-                        <span className="text-xl font-semibold text-foreground">Maximal</span>
+                        <span className="text-xl font-semibold text-foreground">{APP_CONFIG.gymName}</span>
                     </Link>
 
                     {/* Desktop Navigation */}

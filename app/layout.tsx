@@ -20,8 +20,10 @@ const outfit = Outfit({
     weight: ["300", "400", "500", "600", "700", "800", "900"],
 });
 
+import { APP_CONFIG } from "./config";
+
 export const metadata: Metadata = {
-    title: "Maximal Gym - Your Fitness is Our Priority",
+    title: `${APP_CONFIG.gymName} - Your Fitness is Our Priority`,
     description: "Achieve your fitness goals with expert trainers and state-of-the-art facilities",
 };
 
