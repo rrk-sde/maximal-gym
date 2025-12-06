@@ -83,7 +83,7 @@ export default function Header() {
                             Testimonials
                         </Link>
 
-                        <Link href="/#articles" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+                        <Link href="/articles" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
                             Articles
                         </Link>
                     </nav>
@@ -160,7 +160,7 @@ export default function Header() {
                             Testimonials
                         </a>
                         <a
-                            href="#articles"
+                            href="/articles"
                             className="text-sm font-medium text-muted-foreground hover:text-foreground py-2"
                             onClick={() => setIsMenuOpen(false)}
                         >

@@ -14,18 +14,18 @@
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
 
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-border: var(--border);
-  --color-ring: var(--ring);
+  --color-background: rgb(var(--background));
+  --color-foreground: rgb(var(--foreground));
+  --color-card: rgb(var(--card));
+  --color-card-foreground: rgb(var(--card-foreground));
+  --color-primary: rgb(var(--primary));
+  --color-primary-foreground: rgb(var(--primary-foreground));
+  --color-secondary: rgb(var(--secondary));
+  --color-secondary-foreground: rgb(var(--secondary-foreground));
+  --color-accent: rgb(var(--accent));
+  --color-accent-foreground: rgb(var(--accent-foreground));
+  --color-border: rgb(var(--border));
+  --color-ring: rgb(var(--ring));
 }
 
 :root {
@@ -47,10 +47,10 @@
   --accent: 255 77 0;
   --accent-foreground: 255 255 255;
 
-  --border: 255 255 255;
-  /* White for dark mode */
-  --border-opacity: 0.1;
-  /* 10% opacity - subtle borders (#ffffff1a) */
+  --border: 50 50 50;
+  /* Grey for dark mode */
+  --border-opacity: 1;
+  /* Solid grey border */
   /* --ring: 255 77 0; */
 }
 
@@ -90,7 +90,7 @@
   }
 
   body {
-    @apply bg-[rgb(var(--background))] text-[rgb(var(--foreground))] antialiased;
+    @apply bg-background text-foreground antialiased;
   }
 
   /* Universal input text color fix - ensure visibility on all backgrounds */
