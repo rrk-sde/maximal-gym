@@ -12,10 +12,10 @@ export default function Header() {
     return (
         <header className="fixed top-0 left-0 right-0 z-[9999] bg-gradient-to-r from-background/95 via-blue-950/20 to-background/95 backdrop-blur-2xl border-b border-border shadow-xl">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(59,130,246,0.1),transparent_50%),radial-gradient(circle_at_70%_50%,rgba(147,197,253,0.08),transparent_50%)] pointer-events-none" />
-            <div className="container mx-auto px-6 lg:px-12 relative z-[10001]">
+            <div className="container mx-auto px-6 lg:px-12 relative z-[10001] pointer-events-none">
                 <div className="flex items-center justify-between h-20 relative z-10">
                     {/* Logo */}
-                    <Link href="/" className="flex items-center gap-3">
+                    <Link href="/" className="flex items-center gap-3 pointer-events-auto">
                         <div className="w-8 h-8 relative">
                             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#FF4D00" />
@@ -25,7 +25,7 @@ export default function Header() {
                     </Link>
 
                     {/* Desktop Navigation */}
-                    <nav className="hidden lg:flex items-center gap-10">
+                    <nav className="hidden lg:flex items-center gap-10 pointer-events-auto">
                         {/* Programs Dropdown */}
                         <div
                             className="relative group h-full flex items-center"
@@ -89,7 +89,7 @@ export default function Header() {
                     </nav>
 
                     {/* Theme Toggle and Register Button */}
-                    <div className="hidden lg:flex items-center gap-4">
+                    <div className="hidden lg:flex items-center gap-4 pointer-events-auto">
                         <ThemeToggle />
                         <Link
                             href="/admin"
@@ -102,7 +102,7 @@ export default function Header() {
                     {/* Mobile Menu Button */}
                     <button
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
-                        className="lg:hidden p-2 text-foreground"
+                        className="lg:hidden p-2 text-foreground pointer-events-auto"
                         aria-label="Toggle menu"
                         type="button"
                     >
