@@ -31,7 +31,7 @@ export const api = createApi({
             return headers;
         },
     }),
-    tagTypes: ['Auth', 'Bookings', 'Coaches', 'FAQs', 'Contacts', 'Tenants'],
+    tagTypes: ['Auth', 'Bookings', 'Coaches', 'FAQs', 'Contacts', 'Tenants', 'Memberships', 'Classes', 'Workouts'],
     endpoints: () => ({}),
 });
 

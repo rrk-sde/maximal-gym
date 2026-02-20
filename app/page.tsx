@@ -7,6 +7,8 @@ import Team from "./components/sections/Team";
 import Testimonials from "./components/sections/Testimonials";
 import Contact from "./components/sections/Contact";
 import FAQ from "./components/sections/FAQ";
+import MembershipPlans from "./components/sections/MembershipPlans";
+import ClassSchedule from "./components/sections/ClassSchedule";
 
 export default function HomePage() {
     return (
@@ -15,6 +17,8 @@ export default function HomePage() {
             <Stats />
             <Goals />
             <Levels />
+            <MembershipPlans />
+            <ClassSchedule />
             <Workouts />
             <Team />
             <Testimonials />

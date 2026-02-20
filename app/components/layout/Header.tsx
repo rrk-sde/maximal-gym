@@ -88,6 +88,17 @@ export default function Header() {
                         <Link href="/articles" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
                             Articles
                         </Link>
+                        <Link href="/workouts" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+                            Workouts
+                        </Link>
+
+                        <Link href="/#classes" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+                            Schedule
+                        </Link>
+
+                        <Link href="/#memberships" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+                            Memberships
+                        </Link>
                     </nav>
 
                     {/* Theme Toggle and Register Button */}
@@ -167,6 +178,27 @@ export default function Header() {
                             onClick={() => setIsMenuOpen(false)}
                         >
                             Articles
+                        </a>
+                        <Link
+                            href="/workouts"
+                            className="text-sm font-medium text-muted-foreground hover:text-foreground py-2"
+                            onClick={() => setIsMenuOpen(false)}
+                        >
+                            Workouts
+                        </Link>
+                        <a
+                            href="#classes"
+                            className="text-sm font-medium text-muted-foreground hover:text-foreground py-2"
+                            onClick={() => setIsMenuOpen(false)}
+                        >
+                            Schedule
+                        </a>
+                        <a
+                            href="#memberships"
+                            className="text-sm font-medium text-muted-foreground hover:text-foreground py-2"
+                            onClick={() => setIsMenuOpen(false)}
+                        >
+                            Memberships
                         </a>
 
                         {/* Theme Toggle for Mobile */}
